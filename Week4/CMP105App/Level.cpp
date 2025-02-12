@@ -11,7 +11,13 @@ Level::Level(sf::RenderWindow* hwnd, Input* in)
 	testSprite.setTexture(&texture);
 	testSprite.setSize(sf::Vector2f(100, 100));
 	testSprite.setPosition(100, 100);
+	p.setInput(in);
+	bg.setInput(in);
+	c.setInput(in);
+	e.setWindow(hwnd);
+	bg.setWindow(hwnd);
 
+	window->setMouseCursorVisible(false);
 }
 
 Level::~Level()
@@ -27,13 +33,16 @@ void Level::handleInput(float dt)
 	{
 		window->close();
 	}
-
+	p.handleInput(dt);
+	bg.handleInput(dt);
+	c.handleInput(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
-	
+	p.update(dt);
+	e.update(dt);
 }
 
 // Render level
@@ -41,7 +50,10 @@ void Level::render()
 {
 	beginDraw();
 
-	window->draw(testSprite);
+	window->draw(bg);
+	window->draw(p);
+	window->draw(e);
+	window->draw(c);
 
 	endDraw();
 }

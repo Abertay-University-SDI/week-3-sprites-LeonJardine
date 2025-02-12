@@ -6,7 +6,10 @@
 #include "Framework/GameObject.h"
 #include <string.h>
 #include <iostream>
-
+#include "Player.h"
+#include "Enemy.h"
+#include"Background.h"
+#include"Cursor.h"
 
 class Level : BaseLevel {
 public:
@@ -16,7 +19,10 @@ public:
 	void handleInput(float dt) override;
 	void update(float dt) override;
 	void render() override;
-
+	Player p;
+	Enemy e;
+	Background bg;
+	Cursor c;
 private:
 	// Level objects
 	GameObject testSprite;
